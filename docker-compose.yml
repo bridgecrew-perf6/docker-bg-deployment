@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  loadbalancer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: loadbalancer
+    hostname: loadbalancer
+    ports:
+      - "80:80"
+    networks:
+      - bg_network
+    depends_on:
+      - app-blue
+      - app-green
+  app-blue:
+    image: docker/getting-started
+    container_name: app-blue
+    hostname: app-blue
+    networks:
+      - bg_network
+  app-green:
+    image: docker/getting-started
+    container_name: app-green
+    hostname: app-green
+    networks:
+      - bg_network
+
+networks:
+  bg_network:
+    name: bg_network
+    driver: bridge
