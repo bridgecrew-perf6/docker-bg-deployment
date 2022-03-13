@@ -6,20 +6,13 @@ ENV TZ=Asia/Tokyo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt update -q
-RUN apt install -y -q wget \
+RUN apt install -y -q golang \
                       git \
                       build-essential \
-                      libpcre3 \
                       libpcre3-dev \
-                      zlib1g \
                       zlib1g-dev \
                       libssl-dev \
-                      libgd-dev \
-                      libxml2 \
-                      libxml2-dev \
-                      uuid-dev \
-                      tzdata \
-                      golang
+                      tzdata
 
 ENV GOPATH=/go
 ENV PATH=/nginx/sbin:/go/bin:$PATH
