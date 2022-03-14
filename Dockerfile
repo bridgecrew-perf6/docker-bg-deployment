@@ -68,11 +68,11 @@ RUN nginx-build \
 RUN cd work/nginx/${NGINX_VERSION}/nginx-${NGINX_VERSION} && make install
 
 RUN useradd -r nginx
-RUN install -o nginx -d /var/cache/nginx/client_temp
-RUN install -o nginx -d /var/cache/nginx/proxy_temp
-RUN install -o nginx -d /var/cache/nginx/fastcgi_temp
-RUN install -o nginx -d /var/cache/nginx/uwsgi_temp
-RUN install -o nginx -d /var/cache/nginx/scgi_temp
+RUN install -o nginx -d /var/cache/nginx/client_temp \
+                        /var/cache/nginx/proxy_temp \
+                        /var/cache/nginx/fastcgi_temp \
+                        /var/cache/nginx/uwsgi_temp \
+                        /var/cache/nginx/scgi_temp
 
 COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
